@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElosIA - Resposta em libras</title>
+  <link rel="icon" href="access_icon.svg" type="png">
+  <link rel="stylesheet" href="codigo.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background: #f5f5f5;
+    }
+    .mensagem {
+      font-size: 24px; /* TEXTO GRANDE */
+      font-weight: bold;
+      margin: 40px 20px;
+      padding: 15px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .libras {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <p style="color: gray;">ElosIA - resposta em libras</p>
+
+  <div class="mensagem" id="mensagem">
+    Carregando...
+  </div>
+
+  <div class="libras">
+    <!-- O VLibras vai aparecer aqui automaticamente -->
+  </div>
+  <!-- Widget VLibras oficial do governo -->
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <div>
+   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+  
+    // Ativa o VLibras
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    
+    // Pega a mensagem da URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const mensagem = urlParams.get('mensagem') || 'Mensagem não encontrada.';
+
+    // Exibe na tela com espaços no lugar dos underscores
+    document.getElementById('mensagem').innerText = decodeURIComponent(mensagem);
+  </script>
+  </div>
+</body>
+</html>
